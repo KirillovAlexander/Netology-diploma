@@ -8,6 +8,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
@@ -17,9 +18,10 @@ import java.util.Date;
 @AllArgsConstructor
 @Table(name = "files")
 public class File {
-    @Id
+
+    @EmbeddedId
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private FileId fileId;
 
     @CreatedDate
     private Date created;
@@ -30,13 +32,8 @@ public class File {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    private String name;
-
-    private String username;
-
     private String path;
 
     private long size;
-
-
 }
+
